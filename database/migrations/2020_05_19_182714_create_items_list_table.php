@@ -13,7 +13,7 @@ class CreateItemsListTable extends Migration
      */
     public function up()
     {
-        Schema::create('items_list', function (Blueprint $table) {
+        Schema::create('itemslist', function (Blueprint $table) {
             //lista fija de todos los items del juego
             $table->id();
             $table->string('name');
@@ -33,6 +33,6 @@ class CreateItemsListTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items_list');
+        Schema::dropIfExists('itemslist');
     }
 }

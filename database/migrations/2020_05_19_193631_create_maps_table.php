@@ -19,6 +19,7 @@ class CreateMapsTable extends Migration
             $table->string('eventSprite');
             $table->string('levelRange');
             $table->string('mapChars');
+            $table->string('internalName');
             $table->timestamps();
         });
     }

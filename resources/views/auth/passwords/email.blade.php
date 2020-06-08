@@ -16,9 +16,11 @@
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
+                        <i>{{__('Remember that you need to have linked your account to a mail address to use this option')}}</i>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                        <div class="form-group row mt-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-mail address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

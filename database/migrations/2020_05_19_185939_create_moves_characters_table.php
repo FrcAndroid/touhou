@@ -13,7 +13,7 @@ class CreateMovesCharactersTable extends Migration
      */
     public function up()
     {
-        Schema::create('moves_characters', function (Blueprint $table) {
+        Schema::create('movescharacters', function (Blueprint $table) {
             $table->id();
             $table->string('moveId');
             $table->string('charId');
@@ -29,6 +29,6 @@ class CreateMovesCharactersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moves_characters');
+        Schema::dropIfExists('movescharacters');
     }
 }

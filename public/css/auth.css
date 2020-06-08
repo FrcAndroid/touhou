@@ -1,0 +1,17 @@
+.userIcon{
+    margin-left: 10%;
+    height: 20px;
+}
+
+.inboxIcon{
+    position: absolute;
+    height: 20px;
+    top: 30px;
+    margin-left: -25px
+
+}
+
+#msgCount{
+    position: absolute;
+    margin-top: 22px;
+}

@@ -13,7 +13,7 @@ class CreateMovesListTable extends Migration
      */
     public function up()
     {
-        Schema::create('moves_list', function (Blueprint $table) {
+        Schema::create('moveslist', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('description');
@@ -32,6 +32,6 @@ class CreateMovesListTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moves_list');
+        Schema::dropIfExists('moveslist');
     }
 }

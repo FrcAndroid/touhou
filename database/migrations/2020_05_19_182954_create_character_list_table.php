@@ -13,7 +13,7 @@ class CreateCharacterListTable extends Migration
      */
     public function up()
     {
-        Schema::create('character_list', function (Blueprint $table) {
+        Schema::create('characterlist', function (Blueprint $table) {
             $table->id(); // item id
             $table->string('name');
             $table->integer('maxExp');
@@ -37,6 +37,6 @@ class CreateCharacterListTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('character_list');
+        Schema::dropIfExists('characterlist');
     }
 }

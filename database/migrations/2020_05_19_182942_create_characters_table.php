@@ -16,18 +16,12 @@ class CreateCharactersTable extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id(); // item id
             $table->string('name');
-            $table->string('owner')->default('ADMIN');
+            $table->string('owner');
             $table->integer('position');
             $table->integer('exp');
             $table->integer('level');
-            $table->string('skill');
-            $table->string('move1');
-            $table->string('move2');
-            $table->string('move3');
-            $table->string('move4');
             $table->string('healthPointsCurrent');
             $table->string('staminaPointsCurrent');
-            $table->string('sprite');
             $table->timestamps();
         });
     }

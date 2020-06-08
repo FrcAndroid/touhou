@@ -1,0 +1,28 @@
+.userpage{
+    height: 100%;
+}
+
+#profilepicture{
+    width: 150px;
+    height: 150px;
+    margin-left: 15%;
+}
+
+.username{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.userleftbar{
+    width:20%;
+    height: 100%;
+    float:left;
+}
+
+.userrightbar{
+    width: 80%;
+    height: 100%;
+    float: right;
+}
+

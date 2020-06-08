@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+    <script src="{{asset('js/registro.js')}}"></script>
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -12,28 +13,23 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nombreUsuario" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de usuario') }}</label>
+                            <label for="nick" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="nombreUsuario" type="text" class="form-control @error('nombreUsuario') is-invalid @enderror" name="nombreUsuario" value="{{ old('nombreUsuario') }}" required autocomplete="nombreUsuario" autofocus>
+                            <div class="col-md-6 campo">
+                                <input id="nick" type="text" class="campoform form-control @error('nick') is-invalid @enderror" name="nick" value="{{ old('nick') }}" required autocomplete="nick" autofocus>
 
-                                @error('nombreUsuario')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Dirección de correo') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-mail address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <div class="col-md-6 campo">
+                                <input id="email" type="email" class="campoform form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ __($message)  }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -52,8 +48,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            El e-mail es opcional, pero lo necesitaremos si olvidas tu contraseña. Prometemos no enviarte correo basura.
-                                        </div>
+                                            {{__('The e-mail is optional, and we will only use it if you ever need to recover your password. We promise not to send junk mail.')}}
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -61,10 +57,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="campoform form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -75,10 +71,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirma tu contraseña') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="campoform form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
@@ -96,3 +92,4 @@
     </div>
 </div>
 @endsection
+

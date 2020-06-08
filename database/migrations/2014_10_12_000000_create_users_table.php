@@ -19,11 +19,16 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->date('created_at');
-            $table->string('position')->default('0');
-            $table->string('progress')->default('0');
+            $table->integer('position')->default('0');
+            $table->integer('prevPosition')->default('0');
+            $table->integer('progress')->default('0');
             $table->string('description')->nullable();
             $table->string('sprite')->nullable();
-            $table->string('profilePicture')->nullable();
+            $table->string('profilePicture')->default('default.png');
+            $table->string('location')->nullable();
+            $table->string('role')->default('USER');
+            $table->integer('balance')->default(0);
+            $table->string('status')->default('Active');
             $table->rememberToken();
 
         });
