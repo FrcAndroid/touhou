@@ -9,12 +9,11 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function getReports(){
+    public function getReports(){//receive pending reports from database
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
             $bans = Report::where(['status' => 'Pending'], ['reported' => $user])->get();
-            //coleccion de reports
             if($bans->first() != null){
                 $json['success'] = $bans;
             }
@@ -26,7 +25,7 @@ class AdminController extends Controller
         }
     }
 
-    public function getIndividualReport(){
+    public function getIndividualReport(){//get an individual report for processing
         $json = [];
         if(isset($_POST)){
             $banId = $_POST['reportId'];
@@ -43,7 +42,7 @@ class AdminController extends Controller
         }
     }
 
-    public function processReport(){
+    public function processReport(){//update the report with the new data added by the mod
         if(isset($_POST)){
             $json = [];
 
@@ -67,7 +66,7 @@ class AdminController extends Controller
         }
     }
 
-    public function getBans(){
+    public function getBans(){//receive list of all active bans from database
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
@@ -85,7 +84,7 @@ class AdminController extends Controller
         }
     }
 
-    public function processBan(){
+    public function processBan(){//update ban status on database
         if(isset($_POST)){
             $json = [];
 
@@ -109,7 +108,7 @@ class AdminController extends Controller
         }
     }
 
-    public function getHistory(){
+    public function getHistory(){//get historical record of reports and bans from user
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
@@ -124,7 +123,7 @@ class AdminController extends Controller
         }
     }
 
-    public function addWarning(){
+    public function addWarning(){//add a warning on an user, create record
         if(isset($_POST)) {
             $json = [];
 
@@ -148,7 +147,7 @@ class AdminController extends Controller
         }
     }
 
-    public function addBan(){
+    public function addBan(){//add ban on user, create record
         if(isset($_POST)){
             $json = [];
 

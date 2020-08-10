@@ -25,7 +25,7 @@ class GameController extends Controller
         $this->middleware('auth');
     }
 
-    public function getData(){
+    public function getData(){//retrieve player data when he starts game for further usage
         if(isset($_POST)){
             $json=[];
 
@@ -44,7 +44,7 @@ class GameController extends Controller
         }
     }
 
-    public function getConversation(){
+    public function getConversation(){//get conversation from database to process in-game
         if(isset($_POST)){
             $json = [];
             $conversationId = $_POST['conversationId'];
@@ -65,7 +65,6 @@ class GameController extends Controller
                             })
                             ->where(['textlines.conversation' => $conversationId,'user_conversations.callable' => 'true', 'user_conversations.user' => $user])
                             ->get();
-
 
                     if($conversation->first() != null){
                         $json['success'] = $conversation;
@@ -94,7 +93,7 @@ class GameController extends Controller
                             $json['success'] = $conversation;
                         }
                         else{
-                            $json['error'] = "no se";
+                            $json['error'] = trans("Error when retrieving conversation textlines.");
                         }
                     }
                     else{
@@ -111,11 +110,11 @@ class GameController extends Controller
         }
     }
 
-    public function processConversation(){
+    public function processConversation(){//check if conversation has to be updated after accessing it
         if(isset($_POST)){
             $conversation = $_POST['conversation'];
             $user = $_POST['user'];
-            //select conversation to see callAfterTrigger
+            //select conversation to see callAfterTrigger to determine if the conversation can be started again or its one-time
             $convData = Textline::where(['lineId' => $conversation['lineId']], ['conversation' => $conversation['conversationId']])->get();
             if($convData->first() != null){
 
@@ -136,7 +135,7 @@ class GameController extends Controller
         }
     }
 
-    public function getMap(){
+    public function getMap(){//get the current map and position to place the player in
         if(isset($_POST)){
             $json = [];
 
@@ -173,7 +172,7 @@ class GameController extends Controller
         echo json_encode($json);
     }
 
-    public function getEventCode(){
+    public function getEventCode(){//get event triggered and process it
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
@@ -210,9 +209,9 @@ class GameController extends Controller
     }
 
     public function getCharacterRoster(){
+        //retrieve list of characters belonging to user + all other relevant data
         if(isset($_POST)){
             $user = $_POST['user'];
-            //retrieve list of characters belonging to user + all other relevant data
             if(isset($_POST['pc'])) {
                 $charList = DB::table('characters as c')
                     ->select('c.name as char_name','c.position', 'c.id as char_id', 'c.level', 'c.exp', 'c.healthPointsCurrent','c.owner', 'c.staminaPointsCurrent', 'cl.healthpoints', 'cl.staminapoints', 'cl.type', 'sk.name as skill_name', 'sk.description as skill_desc', 'cl.atkMax', 'cl.defMax', 'cl.speedMax')
@@ -259,6 +258,7 @@ class GameController extends Controller
     }
 
     public function sortCharacters(){
+        //change position of characters in database after user has changed them manually
         if(isset($_POST)){
             $pos1 = $_POST['pos1'];
             $pos2 = $_POST['pos2'];
@@ -321,6 +321,7 @@ class GameController extends Controller
     }
 
     public function healTeam(){
+        //update all characters in the team to heal them
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
@@ -348,6 +349,7 @@ class GameController extends Controller
     }
 
     public function getBuyData(){
+        //get information from shop
         if(isset($_POST)){
             $json = [];
             $shopId = $_POST['shopId'];
@@ -370,6 +372,7 @@ class GameController extends Controller
     }
 
     public function getSellData(){
+        //get information from user inventory
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
@@ -391,6 +394,7 @@ class GameController extends Controller
     }
 
     public function buyItem(){
+        //process item transaction
         if(isset($_POST)){
             $user = $_POST['user'];
             $itemId = $_POST['item'];
@@ -446,12 +450,13 @@ class GameController extends Controller
     }
 
     public function sellItem(){
+        //process item transaction
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
             $itemName = $_POST['item'];
             $stock = $_POST['stock'];
-            //just sell the item, remove quantity from stock
+            //sell the item, remove quantity from stock
             $itemSold = Item::where([
                 'owner'=> $user,
                 'name'=> $itemName
@@ -546,6 +551,8 @@ class GameController extends Controller
                         if($charUse->healthPointsCurrent != $charUse->healthpoints){
                             //heal possible, switch with all heal_item possibilities
                             switch($itemId){
+                                //INDIVIDUAL CASES FOR EACH ITEM, EACH ITEM CAN BE UNIQUE
+                                //AND HAVE DIFFERENT EFFECTS, WHICH CAN BE ADDED BELOW HERE
                                 case '2':
                                     //heal 20 hp
                                     $healthLeftToMax = $charUse->healthpoints - $charUse->healthPointsCurrent;
@@ -642,6 +649,7 @@ class GameController extends Controller
     }
 
     public function getDataCard(){
+        //get information to show data card
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
@@ -659,6 +667,7 @@ class GameController extends Controller
     }
 
     public function chooseSprite(){
+        //function to choose gender of character at the start of the game
         if(isset($_POST)){
             $user = $_POST['user'];
             $sprite = $_POST['sprite'];
@@ -691,7 +700,7 @@ class GameController extends Controller
                 //check which instance of a given character is this
                 switch($instance){
                     case 1:
-                        //first character, Reimu Lv.5, standard
+                        //first character is Reimu Lv.5, standard, default.
                         //get all relevant data and save it, character data, moves data.
                         $newCharacter = new Character;
                         $newCharacter->name = 'Reimu';
@@ -1032,6 +1041,7 @@ class GameController extends Controller
             echo json_encode($json);
         }
     }
+
     public function deleteTempChar(){
         if(isset($_POST)){
             $id = $_POST['tempUser'];

@@ -11,10 +11,10 @@ use RuntimeException;
 
 class UserController extends Controller
 {
-    public function subir(){
+    public function upload(){
 
         $json = [];
-        //subimos archivo al servidor
+        //upload file to server
         if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
             $fileTmpPath = $_FILES['file']['tmp_name'];
             $fileName = $_FILES['file']['name'];
@@ -22,7 +22,7 @@ class UserController extends Controller
             $fileNameCmps = explode(".", $fileName);
             $fileExtension = strtolower(end($fileNameCmps));
 
-            //limpiamos el nombre
+            //clean the username
             $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
             if($fileSize < 1000000){
@@ -35,7 +35,7 @@ class UserController extends Controller
                     {
                         $json['success'] = trans('Image updated successfully.');
 
-                        //y ahora a base de datos
+                        //update database
                         $user = User::where("nick", $_POST['user'])->first();
                         $user->profilePicture = $newFileName;
                         $user->save();
@@ -68,6 +68,7 @@ class UserController extends Controller
     }
 
     public function edit(){
+        //updating user profile
         $json = [];
 
         if(isset($_POST)){
@@ -92,6 +93,7 @@ class UserController extends Controller
     }
 
     public function send(){
+        //send a private message to an user
         $json = [];
         if(isset($_POST)){
             $subject = $_POST['subject'];
@@ -121,6 +123,7 @@ class UserController extends Controller
     }
 
     public function report(){
+        //report a user
         if(isset($_POST)){
             $json = [];
             $reporter = $_POST['reporter'];

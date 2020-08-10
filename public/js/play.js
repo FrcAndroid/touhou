@@ -11,6 +11,9 @@ $(document).ready(function(){
 
         });
     }
+    //in this case, because of how javascript works, global variables are a necessary evil to keep certain
+    //events initialised in between functions.
+
     let controlEnvironment = 'field'; //default control environment
     let conversationArray = []; //array that holds all conversation lines
     let convArrayIndex = 0; //current position in the array
@@ -142,9 +145,7 @@ $(document).ready(function(){
                 switch(event.keyCode){
                     case 65:
                         //A button, advance conversation
-                        //get conv array and process it
-
-
+                        //get conversation array and process it
                         convArrayIndex++;
                         if(convArrayIndex >= conversationArray.length){
                             //conversation is finished
@@ -162,7 +163,7 @@ $(document).ready(function(){
                             let values = {
                                 conversation: conversationArray[convArrayIndex],
                                 user : user
-                            }
+                            };
 
                             getdetails('/play/processConversation', values)
                                 .done(function(response){

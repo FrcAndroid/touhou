@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function loadMessages(){
-        //cargamos los mensajes cada vez que se reinicia la pagina
+        //load message list everytime page is loaded, this is so we can show the unread message counter on profile
         $json = [];
         if(isset($_POST)){
             $user = $_POST['user'];
@@ -21,7 +21,7 @@ class AuthController extends Controller
     }
 
     public function loadMessageList(){
-        //cargamos la lista de mensajes al abrir el modal
+        //load message list when opening inbox
         $json = [];
         if(isset($_POST)){
             $user = $_POST['user'];
@@ -34,7 +34,7 @@ class AuthController extends Controller
     }
 
     public function loadMessage(){
-        //cargamos un mensaje individual y cambiamos el estado de este mensaje
+        //load specific message and update its status to READ
         $json = [];
         if(isset($_POST)){
             $messageId = $_POST['message'];
@@ -51,7 +51,7 @@ class AuthController extends Controller
     }
 
     public function getReplyData(){
-        //cargamos datos del mensaje que vamos a responder
+        //load data from message we're about to send
         $json = [];
         if(isset($_POST)){
             $messageId = $_POST['message'];
