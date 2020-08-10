@@ -20,6 +20,3 @@ TouhouRPG is a web-based online RPG coded in JavaScript, PHP, HTML and CSS using
 
 <h2>Credits:</h2>
 https://www.spriters-resource.com/
-
-
-            
