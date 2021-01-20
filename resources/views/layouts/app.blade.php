@@ -60,7 +60,7 @@
                             @endif
 
                         @else
-                            <!-- aqui pones lo relacionado con el usuario -->
+                            <!-- user-related info -->
                             <img alt="profilePicture" src="{{ asset('pfp/'.Auth::user()->profilePicture) }}" width="50px" height="50px" style="margin-right: 10px;">
                             <a href="/u/{{Auth::user()->nick}}" class="nick">{{Auth::user()->nick}}</a>
                                 <div id="msgDiv">

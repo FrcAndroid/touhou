@@ -6,12 +6,12 @@
     @section('content')
         @auth
             <script src="{{asset('js/user.js')}}"></script>
-            <div type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->nick }}">
+            <div type="hidden" id="user" name="user" value="{{ Auth::user()->nick }}">
             <div type="hidden" id="userProfile" name="userProfile" value="{{ $userExists->nick }}">
         @endauth
             <div class="container userpage" >
             <div class="userleftbar">
-                <!-- primero ponemos foto de perfil -->
+                <!-- show profile picture -->
                 <img id="profilepicture" class="profilepicture" src="{{ asset('pfp/'.$userExists['profilePicture']) }}">
                 @if($isUser == "true")
                     <input type="image" src="/open-iconic/svg/data-transfer-upload.svg"  data-toggle="modal" data-target="#imgModal" class="userIcon mt-1 offset-9" title="@lang('Change profile picture')">
@@ -30,11 +30,11 @@
                                     <form enctype="multipart/form-data" id="formuploadajax" method="post">
                                         @csrf
                                         @lang('Image:')
-                                        <br />
-                                        <input  type="file" id="archivo" name="archivo"/>
+                                        <br/>
+                                        <input  type="file" id="file" name="file"/>
                                         <input type="submit" id="formsubmit" value="@lang('Upload image')"/>
                                     </form>
-                                    <div id="mensaje"></div>
+                                    <div id="message"></div>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                     <img src="/open-iconic/svg/account-login.svg" class="userIcon" title="@lang('Join Date')"> {{ $userExists->created_at }} </img>
                 </div>
                 @if($isUser == "false")
-                    @auth <!-- para que solo los usuarios puedan mandar mensajes o reportar -->
+                    @auth <!-- only users can send messages or report -->
                 <div id="useractions" class="useractions mt-3 offset-2">
                     <input type="image" src="/open-iconic/svg/envelope-closed.svg" class="userIcon mr-1" title="@lang('Send Message')" data-toggle="modal" data-target="#privateMessageModal">
 
@@ -110,10 +110,10 @@
 
             </div>
             <div class="userrightbar">
-                <!-- ponemos primero la descripcion -->
+                <!-- add description first -->
                 <div id="about" class="about">
                 @if($isUser == "true")
-                        <!-- añadimos modal -->
+                        <!-- add modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aboutModal">
                             ?
                         </button>

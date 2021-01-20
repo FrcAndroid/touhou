@@ -77,11 +77,11 @@ class UserController extends Controller
             $user = $_POST['user'];
 
 
-            $datosUser = User::where('nick', $user)->first();
-            $datosUser[$field] = $message;
-            $datosUser->save();
+            $userData = User::where('nick', $user)->first();
+            $userData[$field] = $message;
+            $userData->save();
 
-            if($datosUser->wasChanged()){
+            if($userData->wasChanged()){
                 $json['success'] = trans("Updated successfully");
             }
             else{

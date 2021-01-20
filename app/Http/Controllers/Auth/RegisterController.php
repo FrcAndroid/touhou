@@ -74,19 +74,19 @@ class RegisterController extends Controller
 
     }
 
-    public function validarCampo(){
-        //validamos el campo especifico y enviamos mensaje error o exito
+    public function validateFields(){
+        //validate specific field and send error message in case it's not valid
         $json = [];
-        $valor = $_POST['value'];
-        $campo = $_POST['campo'];
-        if($campo == "nick"){
-            //validamos el nombre del usuario de forma manual, utilizaremos validate solo en form submit
-            if(!empty($valor)){
-                //comprobamos longitud
-                if(strlen($valor) > 3 && strlen($valor) < 16){
-                    //finalmente comprobamos que no esté en la lista de usuarios
-                    $usuarios = User::where('nick', $valor)->first();
-                    if(!$usuarios){
+        $value = $_POST['value'];
+        $field = $_POST['field'];
+        if($field == "nick"){
+            //we manually validate the username, using validate only on form submit
+            if(!empty($value)){
+                //check length of username
+                if(strlen($value) > 3 && strlen($value) < 16){
+                    //check username is unique
+                    $users = User::where('nick', $value)->first();
+                    if(!$users){
                         $json['success'] = trans("Valid user.");
                     }
                     else{
@@ -104,13 +104,13 @@ class RegisterController extends Controller
             echo json_encode($json);
 
         }
-        if($campo == "email"){
-            //validamos el email de forma manual, utilizaremos validate solo en form submit
-            if(!empty($valor)){
-                //comprobamos longitud
-                if (filter_var($valor, FILTER_VALIDATE_EMAIL)) {
-                    //finalmente comprobamos que no esté en la lista de usuarios
-                    $emails = User::where('email', $valor)->first();
+        if($field == "email"){
+            //we validate e-mail individually, using the validate only on form submit
+            if(!empty($value)){
+                //check length and validity of mail
+                if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                    //check email doesnt belong to any user
+                    $emails = User::where('email', $value)->first();
                     if(!$emails){
                         $json['success'] = trans("Valid e-mail.");
                     }
@@ -129,9 +129,9 @@ class RegisterController extends Controller
             echo json_encode($json);
 
         }
-        if($campo == "password" || $campo == "password-confirm"){
-            if(!empty($valor)){
-                if(strlen($valor)>3){
+        if($field == "password" || $field == "password-confirm"){
+            if(!empty($value)){
+                if(strlen($value)>3){
                     $json['success'] = trans("Valid password.");
                 }
                 else{
