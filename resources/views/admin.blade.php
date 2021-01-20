@@ -15,18 +15,18 @@
                         <th>@lang('E-mail')</th>
                         <th>@lang('Role')</th>
                         <th>@lang('Status')</th>
-                        <!-- mostraremos historico, reportes y baneos pendientes -->
-                        @foreach($listaUsers as $users)
-                            <?php $tieneReportes = false; $tieneBans = false; ?>
-                                @foreach($listaReports as $report)
+                        <!-- show history, bans and reports pending -->
+                        @foreach($usersList as $users)
+                            <?php $hasReports = false; $hasBans = false; ?>
+                                @foreach($reportsList as $report)
                                     @if($report->reported == $users->nick && $report->status == "Pending")
-                                        <?php $tieneReportes = true; ?>
+                                        <?php $hasReports = true; ?>
                                     @endif
                                 @endforeach
 
-                                @foreach($listaBans as $ban)
+                                @foreach($bansList as $ban)
                                     @if($ban->user == $users->nick && $ban->status == "Active")
-                                        <?php $tieneBans = true; ?>
+                                        <?php $hasBans = true; ?>
                                     @endif
                                 @endforeach
                             <tr>
@@ -36,10 +36,10 @@
 
                             <td>
                                 <input type="image" src="/open-iconic/svg/file.svg" user="{{ $users->nick }}"  data-toggle="modal" data-target="#historyModal" class="historyIcon float-left mr-2 icon" title="@lang('History of this user')">
-                            @if($tieneReportes == true)
+                            @if($hasReports == true)
                                         <input type="image" src="/open-iconic/svg/warning.svg" user="{{ $users->nick }}"  data-toggle="modal" data-target="#reportsModal" class="reportIcon float-left mr-2 icon" title="@lang('This user has pending reports')">
                             @endif
-                            @if($tieneBans == true)
+                            @if($hasBans == true)
                                         <input type="image" src="/open-iconic/svg/ban.svg" user="{{ $users->nick }}" data-toggle="modal" data-target="#bansModal" class="banIcon float-left mr-2 icon" title="@lang('This user has active bans')">
                             @endif
                             </td>

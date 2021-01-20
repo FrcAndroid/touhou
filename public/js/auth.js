@@ -6,7 +6,7 @@ $(document).ready(function() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/load/cargarMensajes",
+        url: "/load/loadMessages",
         type: "post",
         dataType: 'json',
         data: {
@@ -27,14 +27,14 @@ $(document).ready(function() {
         });
 
     $('#inboxModal').on('show.bs.modal', function () {
-        //la primera vez que entramos sacamos una lista para mostrar todos los mensajes
+        //first time we enter we retrieve a list to show all messages
         let user = $("#userGlobal").attr('value');
 
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/load/cargarListaMensajes",
+            url: "/load/loadMessagesList",
             type: "post",
             dataType: 'json',
             data: {
@@ -45,20 +45,20 @@ $(document).ready(function() {
                 if (response.success !== undefined) {
                     console.log(response.success)
                     $(".cont").remove();
-                    let lista = response.success;
-                    $.each(lista, function (i) {
-                        console.log(lista);
+                    let messageList = response.success;
+                    $.each(messageList, function (i) {
+                        console.log(messageList);
                         $("#listMessage").append("<div class='cont'>" +
-                            "<div class='inboxId' hidden>" + lista[i].id + "</div>" +
-                            "<a class='inboxSubject float-left' id ="+ lista[i].id+ " data-id ="+ lista[i].id+ " href='' data-toggle='modal' data-target='#privateMessageModal'>" + lista[i].subject + "</a>" +
-                            "<div class='float-right'>"+ lista[i].created_at +"</div>" +
-                            "<br><a class='inboxFrom'>" + lista[i].from + "</a>" +
+                            "<div class='inboxId' hidden>" + messageList[i].id + "</div>" +
+                            "<a class='inboxSubject float-left' id ="+ messageList[i].id+ " data-id ="+ messageList[i].id+ " href='' data-toggle='modal' data-target='#privateMessageModal'>" + messageList[i].subject + "</a>" +
+                            "<div class='float-right'>"+ messageList[i].created_at +"</div>" +
+                            "<br><a class='inboxFrom'>" + messageList[i].from + "</a>" +
                             "</div>");
 
-                        $(".inboxFrom").attr("href", "/u/" + lista[i].from);
+                        $(".inboxFrom").attr("href", "/u/" + messageList[i].from);
 
-                        if (lista[i].status === "UNREAD") {
-                            $(".inboxSubject#"+ lista[i].id).attr('data-id', lista[i].id).css({
+                        if (messageList[i].status === "UNREAD") {
+                            $(".inboxSubject#"+ messageList[i].id).attr('data-id', messageList[i].id).css({
                                 "font-weight": "bold",
                                 "font-size": "16px",
                                 "color" : "blue"
@@ -69,14 +69,14 @@ $(document).ready(function() {
                             })
                         }
                         else{
-                            $(".inboxSubject#"+ lista[i].id).attr('data-id', lista[i].id).css({
+                            $(".inboxSubject#"+ messageList[i].id).attr('data-id', messageList[i].id).css({
                                 "color" : "black"
                             })
                         }
 
 
                     });
-                    //añadimos estilos y posicionamiento
+                    //add style and positioning
                     $(".cont").css({
                         "border": "1px solid",
                         "background-color" : "beige"
@@ -94,7 +94,7 @@ $(document).ready(function() {
                     });
 
                 } else {
-
+                    //TODO why is this empty
                 }
             });
     });
@@ -106,14 +106,13 @@ $(document).ready(function() {
         var messageId = $(e.relatedTarget).data('id')
         //$(this).find('.modal-body input').val(bookId)
         $(".replyMessage").attr('id', messageId);
-        console.log(messageId)
-        //al entrar aqui buscamos el mensaje para mostrar sus valores
+        //when entering here we search the message to show its values
 
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/load/cargarMensajeIndividual",
+            url: "/load/loadIndividualMessage",
             type: "post",
             dataType: 'json',
             data: {
@@ -129,7 +128,7 @@ $(document).ready(function() {
                     $("#messageContent").append(messageData.message);
 
                 } else {
-
+                    //TODO why is this empty
                 }
             });
     });
@@ -198,7 +197,7 @@ $(document).ready(function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/edit/enviarMensaje",
+                url: "/edit/sendMessage",
                 type: "post",
                 dataType: 'json',
                 data: {

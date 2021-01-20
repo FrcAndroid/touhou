@@ -1,11 +1,10 @@
 'use strict'
 $(document).ready(function() {
-    let user = $("#usuario").attr('value');
+    let user = $("#user").attr('value');
     let userProfile = $("#userProfile").attr("value");
 
     $("#formuploadajax").on("submit", function (e) {
         e.preventDefault();
-        console.log(user);
         var formData = new FormData();
         formData.append('file', $('input[type=file]')[0].files[0]);
         formData.append('user', user);
@@ -13,7 +12,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/edit/subirArchivoUser",
+            url: "/edit/uploadUserFile",
             type: "post",
             dataType: 'json',
             data: formData,
@@ -42,7 +41,7 @@ $(document).ready(function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/edit/editarUser",
+                url: "/edit/editUser",
                 type: "post",
                 dataType: 'json',
                 data: {'message': message, 'field' : field, 'user' : user},
@@ -74,7 +73,7 @@ $(document).ready(function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/edit/enviarMensaje",
+                url: "/edit/sendMessage",
                 type: "post",
                 dataType: 'json',
                 data: {
@@ -103,12 +102,12 @@ $(document).ready(function() {
         let message = $('#reportText').val();
         console.log(message);
         if(message !== ""){
-            //llamada ajax para meter el reporte en la lista
+            //ajax call to add report to the list
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/edit/enviarReporte",
+                url: "/edit/sendReport",
                 type: "post",
                 dataType: 'json',
                 data: {

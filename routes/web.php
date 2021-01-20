@@ -32,12 +32,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('validarCampo','Auth\RegisterController@validarCampo');
+Route::post('validateField','Auth\RegisterController@validateField');
 
-Route::post('/edit/subirArchivoUser','UserController@subir');
-Route::post('/edit/editarUser','UserController@edit');
-Route::post('/edit/enviarMensaje','UserController@send');
-Route::post('/edit/enviarReporte','UserController@report');
+Route::post('/edit/uploadUserFile','UserController@upload');
+Route::post('/edit/editUser','UserController@edit');
+Route::post('/edit/sendMessage','UserController@send');
+Route::post('/edit/sendReport','UserController@report');
 
 
 
@@ -61,30 +61,28 @@ Route::get('/u/{username}', function($username){
     }
 
     $isUser = "false";
-    if(Auth::check()){//recuerda que un invitado puede mirar los perfiles tambien
+    if(Auth::check()){//remember a guest can also see profiles
         if(Auth::user()->nick == $username){
             $isUser = "true";
         }
     }
 
-    //var_dump($userOwns);
-
     return view('user', compact('username', 'userExists', 'userOwns', 'isUser', 'pastBans', 'pastWarnings', 'isBanned'));
 });
 
-Route::post('/load/cargarMensajes','AuthController@loadMessages');
-Route::post('/load/cargarListaMensajes','AuthController@loadMessageList');
-Route::post('/load/cargarMensajeIndividual','AuthController@loadMessage');
+Route::post('/load/loadMessages','AuthController@loadMessages');
+Route::post('/load/loadMessageList','AuthController@loadMessageList');
+Route::post('/load/loadMessage','AuthController@loadMessage');
 Route::post('/load/getReplyData','AuthController@getReplyData');
 
 
 Route::get('/adminpanel',function(){
-    //enviamos lista de usuarios para enseñar en el panel de administrador
-    $listaUsers = User::all();
-    $listaReports = Report::all();
-    $listaBans = Ban::all();
+    //send user list to show on the admin panel
+    $usersList = User::all();
+    $reportsList = Report::all();
+    $bansList = Ban::all();
 
-    return view('admin', compact('listaUsers', 'listaReports', 'listaBans'));
+    return view('admin', compact('usersList', 'reportsList', 'bansList'));
 });
 
 Route::post('/admin/getReports', 'AdminController@getReports');

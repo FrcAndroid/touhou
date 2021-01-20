@@ -13,11 +13,11 @@ $(document).ready(function(){
     }
     //in this case, because of how javascript works, global variables are a necessary evil to keep certain
     //events initialised in between functions.
-
+    //TODO is it really
     let controlEnvironment = 'field'; //default control environment
     let conversationArray = []; //array that holds all conversation lines
     let convArrayIndex = 0; //current position in the array
-        var userData;
+    var userData;
     let user = $('#user').attr('value');
     let moveIdle = true; // movement sprite value
     let moveDirection; //direction in which the sprite is moving before another direction input
@@ -900,7 +900,6 @@ $(document).ready(function(){
 
         $(this).children().first().removeClass('btn-success').addClass('btn-danger').html('Sorting...')
         if(positionArray.length === 2){
-            console.log('listos para intercambiar');
             var canSort = true;
             for(let i=0; i<positionArray.length; i++){
                 if(i === 0){
@@ -1010,7 +1009,6 @@ $(document).ready(function(){
         getdetails("/play/getBuyData", values)
             .done(function(response){
                 if(response.success !== undefined){
-                    console.log(response.success);
                     let itemList = response.success;
                     var shopDiv ="";
                     $("#shopBuyList").empty();
@@ -1453,7 +1451,6 @@ $(document).ready(function(){
 
         $("#atkBtn").on('click', function(){
             //open attack list modal
-            console.log('kulikitakati')
             $("#atkBattleModal").modal('show');
             $(".atkCommand").remove();
 
@@ -1654,7 +1651,6 @@ $(document).ready(function(){
         var itemId = parseInt(this.id);
         var position = parseInt(this.parentElement.id);
         //there are several types of items, so we'll leave open other kinds of checking
-        console.log([itemId, position]);
         switch (itemId) {
             case 2:
                 'heal 20 hp'
@@ -1913,6 +1909,7 @@ $(document).ready(function(){
                                     startConversation(values)
                                     break;
                                 default:
+                                    //TODO what
                                     console.log('???')
                                     break;
                             }
@@ -1920,6 +1917,7 @@ $(document).ready(function(){
                         })
                     }
                     else{
+                        //TODO what
                         console.log('error');
                     }
                 })
@@ -1976,11 +1974,9 @@ $(document).ready(function(){
                         $("#battleText").html('The judgment has been casted. Sentence is death.');
                     }
                     else if(rivalData[0].data.healthPoints - attackFormula < 0){
-                        console.log('0 de hp')
                         rivalData[0].data.healthPoints = 0;
                     }
                     else{
-                        console.log('baja el hp')
                         rivalData[0].data.healthPoints -= attackFormula;
                     }
                     //check if rival's dead
@@ -1995,7 +1991,6 @@ $(document).ready(function(){
                         }
 
                         if(rivalData[1] === undefined){
-                            console.log('se acabo')
                             //no one else left, finish battle
                             //call finish battle function TODO
                             reloadBattleData();
@@ -2004,7 +1999,6 @@ $(document).ready(function(){
                         else{
                             //release next character
                             rivalData.shift();
-                            console.log(rivalData)
                             reloadBattleData();
                             return false;
                         }
@@ -2192,7 +2186,6 @@ $(document).ready(function(){
             case "change":
                 //no attack
                 //they attack
-                console.log('hola')
                 let canAttack = attackProcess('rival', '');
                 $("#battleText").fadeToggle(2000, function () {
                     //our turn
@@ -2239,7 +2232,6 @@ $(document).ready(function(){
                 arrayData.data.atk += 1;
                 return arrayData.data.char_name +"'s attack raised by 1";
 
-                break;
             case 6:
                 //Calmed, recover 5% hp each turn
                 //turn-based
@@ -2295,9 +2287,9 @@ $(document).ready(function(){
             case 3:
                 //Necromancy, recover 50% hp when killed
                 arrayData.data.healthPoints = arrayData.data.healthMax / 2;
-                return " has revived to half health once.";
+                return " has risen from the dead once more.";
             case 4:
-                //extracurricular class, get 50% more net exp gain
+                //extracurricular class, get 50% more net exp gain TODO
                 break;
             case 7:
                 //Traveller of the Storms, get 1x modifier against Electric

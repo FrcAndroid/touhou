@@ -25,7 +25,8 @@ class GameController extends Controller
         $this->middleware('auth');
     }
 
-    public function getData(){//retrieve player data when he starts game for further usage
+    public function getData(){
+        //retrieve player data when he starts game for further usage
         if(isset($_POST)){
             $json=[];
 
@@ -44,7 +45,8 @@ class GameController extends Controller
         }
     }
 
-    public function getConversation(){//get conversation from database to process in-game
+    public function getConversation(){
+        //get conversation from database to process in-game
         if(isset($_POST)){
             $json = [];
             $conversationId = $_POST['conversationId'];
@@ -110,7 +112,8 @@ class GameController extends Controller
         }
     }
 
-    public function processConversation(){//check if conversation has to be updated after accessing it
+    public function processConversation(){
+        //check if conversation has to be updated after accessing it
         if(isset($_POST)){
             $conversation = $_POST['conversation'];
             $user = $_POST['user'];
@@ -135,7 +138,8 @@ class GameController extends Controller
         }
     }
 
-    public function getMap(){//get the current map and position to place the player in
+    public function getMap(){
+        //get the current map and position to place the player in
         if(isset($_POST)){
             $json = [];
 
@@ -172,7 +176,8 @@ class GameController extends Controller
         echo json_encode($json);
     }
 
-    public function getEventCode(){//get event triggered and process it
+    public function getEventCode(){
+        //get event triggered and process it
         if(isset($_POST)){
             $json = [];
             $user = $_POST['user'];
@@ -965,7 +970,9 @@ class GameController extends Controller
             $charId = $_POST['charId'];
             $charLevel  = $_POST['charLevel'];
             $user = $_POST['user'];
-            $owner = "temp_". $user; //unique identifier for this specific character
+            $owner = "temp_". $user;
+            //unique identifier for this specific character
+
             //get data from character id
             $newCharData = CharacterList::where(['id' => $charId])->first();
                 //enter the character itself
