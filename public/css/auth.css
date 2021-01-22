@@ -1,17 +1,16 @@
-.userIcon{
+.userIcon {
     margin-left: 10%;
     height: 20px;
 }
 
-.inboxIcon{
+.inboxIcon {
     position: absolute;
     height: 20px;
     top: 30px;
-    margin-left: -25px
-
+    margin-left: -25px;
 }
 
-#msgCount{
+#msgCount {
     position: absolute;
     margin-top: 22px;
 }

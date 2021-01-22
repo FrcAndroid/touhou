@@ -1,14 +1,13 @@
-#playField{
+#playField {
     position: absolute;
     border: 2px solid;
     width: 600px;
     height: 600px;
     margin-left: 30%;
     z-index: 0;
-
 }
 
-#textBox{
+#textBox {
     position: absolute;
     background-color: blue;
     color: white;
@@ -20,47 +19,46 @@
     font-size: 24px;
 }
 
-#npcSpritePosition{
+#npcSpritePosition {
     position: absolute;
     width: 200px;
     height: 66%;
     margin-top: 200px;
-    z-index:4;
+    z-index: 4;
 }
 
-#npcSpritePosition>*{
+#npcSpritePosition > * {
     height: 100%;
 }
 
-#mainSprite>*{
+#mainSprite > * {
     position: absolute;
     width: 600px;
     height: 600px;
     z-index: 3;
-
 }
 
-#eventSprite{
+#eventSprite {
     position: absolute;
     z-index: -1;
 }
 
-#userSprite>*{
+#userSprite > * {
     position: absolute;
     width: 60px;
     height: 90px;
     z-index: 3;
 }
 
-.spriteImg{
+.spriteImg {
     height: 100px;
 }
 
-.cont{
-    border: 2px solid
+.cont {
+    border: 2px solid;
 }
 
-.charName{
+.charName {
     position: absolute;
     margin-left: 120px;
     margin-top: -90px;
@@ -73,47 +71,46 @@
     margin-top: -10px;
 }
 
-.health{
+.health {
     background-color: lightgreen;
 }
-.stamina{
+.stamina {
     background-color: #0dc9ff;
 }
 
-.emptySpace{
+.emptySpace {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.middlerow{
+.middlerow {
     position: absolute;
     margin-top: -50px;
     margin-left: 120px;
 }
 
-.middlerow>*{
+.middlerow > * {
     position: relative;
     float: left;
     margin-right: 10px;
 }
 
-.thirdrow{
+.thirdrow {
     position: absolute;
     margin-top: -30px;
     margin-left: 120px;
 }
 
-.thirdrow>*{
+.thirdrow > * {
     position: relative;
     float: left;
     margin-right: 10px;
 }
 
-
-.rightrow{
+.rightrow {
     float: right;
 }
-.moverow{
+.moverow {
     margin-top: 10px;
 }
 
@@ -121,71 +118,70 @@
     width: 130%;
 }
 
-.fourthrow{
+.fourthrow {
     margin-left: 120px;
-    margin-top : -15px;
+    margin-top: -15px;
 }
 
-.firstTD{
+.firstTD {
     border: 2px solid red;
 }
 
-.itemImg{
+.itemImg {
     height: 75px;
 }
 
-#cardDiv{
+#cardDiv {
     height: 200px;
     background-color: lightgoldenrodyellow;
 }
 
-#cardSpriteDiv{
+#cardSpriteDiv {
     position: relative;
     height: 20%;
     float: right;
 }
 
-#cardSprite{
+#cardSprite {
     position: relative;
     height: 200px;
 }
 
-#cardName{
+#cardName {
     font-size: 30px;
 }
 
-.genderButton{
+.genderButton {
     height: 200px;
 }
 
-.tutorialSprite{
+.tutorialSprite {
     z-index: -1;
 }
 
-#maleSprite{
+#maleSprite {
     z-index: 20;
 }
 
-#femaleSprite{
+#femaleSprite {
 }
 
-#battlePlayfield{
+#battlePlayfield {
     border: 2px solid;
     position: absolute;
     width: 600px;
     height: 600px;
     margin-left: 30%;
     z-index: 0;
-
 }
 
-#buttonBar{
+#buttonBar {
     width: 600px;
     height: 100px;
     margin-top: 450px;
 }
 
-.battleBtn{
+.battleBtn {
     height: 100%;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -193,44 +189,44 @@
     float: left;
 }
 
-.battleSprite{
+.battleSprite {
     height: 175px;
     width: 125px;
 }
 
-#trainerSpriteDiv{
+#trainerSpriteDiv {
     margin-top: 150px;
     margin-left: 75px;
- }
+}
 
-#rivalSpriteDiv{
+#rivalSpriteDiv {
     margin-left: 400px;
     margin-top: 150px;
 }
 
-#trainerSprite{
+#trainerSprite {
     height: 200px;
-
 }
-#rivalSprite{
+#rivalSprite {
     transform: scaleX(-1);
     height: 200px;
 }
-.battleBar{
+.battleBar {
     height: 100px;
     width: 250px;
     background-color: beige;
 }
 
-#trainerBar>*, #rivalBar>*{
-    font-size: 20px
+#trainerBar > *,
+#rivalBar > * {
+    font-size: 20px;
 }
 
-#rivalBar{
+#rivalBar {
     margin-left: 350px;
 }
 
-#battleText{
+#battleText {
     height: 100px;
     width: 600px;
     background-color: #9fcdff;
@@ -239,23 +235,27 @@
     margin-top: 500px;
 }
 
-#trainerSide>*, #rivalSide>*, #battleText>*{
+#trainerSide > *,
+#rivalSide > *,
+#battleText > * {
     position: absolute;
 }
 
-#tLevel, #tStBar{
+#tLevel,
+#tStBar {
     float: right;
     margin-top: -30px;
     margin-left: -10px;
 }
 
-#rLevel, #rStBar{
+#rLevel,
+#rStBar {
     float: right;
     margin-top: -30px;
     margin-left: -10px;
 }
 
-.atkCommand{
+.atkCommand {
     border: 1px solid;
     width: 230px;
 }
