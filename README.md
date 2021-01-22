@@ -2,7 +2,6 @@
 
 TouhouRPG is a web-based online RPG coded in JavaScript, PHP, HTML and CSS using the framework Laravel.
 
-
 <h2>Features</h2>
 <ul>
     <li>Create an account and edit your profile, chat with your friends, or show off your achievements!</li>

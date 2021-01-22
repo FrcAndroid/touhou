@@ -29,9 +29,7 @@ class GameController extends Controller
         //retrieve player data when he starts game for further usage
         if(isset($_POST)){
             $json=[];
-
             $user = $_POST['user'];
-
             $userData = User::where('nick', $user)->first();
 
             if($userData->first() != null){
@@ -47,7 +45,7 @@ class GameController extends Controller
 
     public function getConversation(){
         //get conversation from database to process in-game
-        if(isset($_POST)){
+        if(isset($_POST)) {
             $json = [];
             $conversationId = $_POST['conversationId'];
             $user = $_POST['user'];
