@@ -27,6 +27,6 @@ class HomeController extends Controller
     }
 
     public function setLocale(){
-        var_dump('pog');
+        //TODO is this even used?
     }
 }

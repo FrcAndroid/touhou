@@ -58,7 +58,7 @@ $(document).ready(function(){
                     $("#reportContent").append(report.reason);
                 }
                 else{
-                    console.log(response.error)
+                    //TODO proper error logging
                 }
 
             })
