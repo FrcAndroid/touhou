@@ -1,7 +1,7 @@
 'use strict';
 $(document).ready(function() {
     let user = $("#userGlobal").attr('value');
-
+    //TODO might be defining the ajax call too many times
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -43,11 +43,9 @@ $(document).ready(function() {
         })
             .done(function (response) {
                 if (response.success !== undefined) {
-                    console.log(response.success)
                     $(".cont").remove();
                     let messageList = response.success;
                     $.each(messageList, function (i) {
-                        console.log(messageList);
                         $("#listMessage").append("<div class='cont'>" +
                             "<div class='inboxId' hidden>" + messageList[i].id + "</div>" +
                             "<a class='inboxSubject float-left' id ="+ messageList[i].id+ " data-id ="+ messageList[i].id+ " href='' data-toggle='modal' data-target='#privateMessageModal'>" + messageList[i].subject + "</a>" +
@@ -136,7 +134,6 @@ $(document).ready(function() {
 
     $('#privateMessageModal').on('hide.bs.modal', function () {
 
-        console.log('fire')
         $('#messageFrom').html('');
         $('#messageSubject').html('');
         $('#messageDate').html('');
@@ -190,7 +187,6 @@ $(document).ready(function() {
         let message = $("#replyMessage").val();
         let sender = user;
         let receiver = $("#replyTo").attr('sender');
-        console.log(receiver)
 
         if(message !== ""){
             $.ajax({

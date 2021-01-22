@@ -78,7 +78,6 @@ $(document).ready(function(){
                    $("#"+field).removeClass("is-valid").addClass("is-invalid")
                    $(div).insertAfter("#"+field)
                }
-                console.log(response);
            })
            .fail(function(jqXHR, textStatus, errorThrown) {
            $("#textFail").remove();

@@ -51,7 +51,6 @@ $(document).ready(function(){
         .done(function(response){
             if(response.success !== undefined){
                 userData = response.success;
-                console.log(userData);
 
                 if(userData.position === 0){
                     mapZero(userData);
@@ -90,7 +89,7 @@ $(document).ready(function(){
                 }
             }
             else{
-                console.log(response.error)
+                //TODO what do we do here
             }
         });
 
@@ -381,7 +380,6 @@ $(document).ready(function(){
         }
         else if(p[0] === 0 && p[1] === 255 && p[2] === 53 && p[3] === 255) {//check if its grass
             //does some related to doll battling
-            console.log('green');
             canMove = true;
             //each time we step on green, chance of summoning a wild character of 10%
             var chance = Math.floor(Math.random() * 100);
@@ -415,10 +413,9 @@ $(document).ready(function(){
                                         getBattleData(trainerId, rivalId);
                                     }
                                     else{
-                                        console.log(response.error);
+                                        //TODO what do we do here
                                     }
                                 })
-                            console.log(values);
                         }
 
                     })
@@ -460,15 +457,13 @@ $(document).ready(function(){
 
                         }
                         else if(response.success.eventType === "special"){
-                            console.log(response.success.id)
                             eventCode = response.success.id;
                             inEventRange = true;
                             canMove = true;
                             eventType = "";
                         }
                         else{
-                            console.log(response.error)
-
+                            //TODO what do we do here
                         }
                     }
                 })
@@ -552,7 +547,7 @@ $(document).ready(function(){
                 getdetails('/play/healTeam', values)
                     .done(function(response){
                         if(response.error !== undefined){
-                            console.log(response.error);
+                            //TODO what do we do here
                         }
                     });
                 break;
@@ -579,7 +574,7 @@ $(document).ready(function(){
                             startConversation(values)
                         }
                         else{
-                            console.log(response.error);
+                            //TODO what do we do here
                         }
                     })
                 break;
@@ -699,7 +694,7 @@ $(document).ready(function(){
 
                 }
                 else{
-                    console.log(response);
+                    //TODO what do we do here
                 }
             })
 
@@ -741,7 +736,6 @@ $(document).ready(function(){
 
                     //process event
                     if(conversationArray[convArrayIndex].eventTrigger !== null){
-                        console.log(conversationArray[convArrayIndex].eventTrigger);
                         processEvent(conversationArray[convArrayIndex].eventTrigger);
                     }
                     controlEnvironment = 'conversation';
@@ -759,7 +753,6 @@ $(document).ready(function(){
         if(inPc === true){
             values.pc = true;
         }
-        console.log(values)
         getdetails('/play/getCharacterRoster', values)
             .done(function(response){
                 if(response.success !== undefined){
@@ -771,9 +764,6 @@ $(document).ready(function(){
                     $("#characterList").html('');
                     //append data to div
                     $.each(charData, function(i){
-                        console.log(charData[i]);
-                        console.log(moveList[i]);
-
                         //get sprite id
                         let img = "/sprites/characters/" + charData[i].char_name + "/sprite.png";
                         let exp = charData[i].exp - ((charData[i].exp / 1000) * 1000);
@@ -819,7 +809,7 @@ $(document).ready(function(){
                     });
                 }
                 else{
-                    console.log(response.error)
+                    //TODO proper error logging
                 }
             });
     });
@@ -833,7 +823,6 @@ $(document).ready(function(){
         getdetails('/play/getItems', values)
                .done(function(response){
                        if(response.success !== undefined){
-                           console.log(response.success);
                            let itemList = response.success;
                            var itemDiv ="";
                            $("#itemsDiv").empty();
@@ -873,7 +862,6 @@ $(document).ready(function(){
             .done(function(response){
                 if(response.success !== undefined){
                     $("#cardDiv").empty();
-                    console.log(response.success);
                     let data = response.success;
                     let img = "/sprites/player/card/" + data.sprite + ".png";
 
@@ -889,12 +877,13 @@ $(document).ready(function(){
 
                 }
                 else{
-                    console.log(response.error)
+                    //TODO proper error logging
                 }
             })
     });
 
     var positionArray = [];
+    //TODO what is this doing here ^
     $(document).on('click', '.buttonPos', function(){
         positionArray.push($(this).children().first().val());
 
@@ -987,7 +976,7 @@ $(document).ready(function(){
                             positionArray = [];
                         }
                         else{
-                            console.log(response.error)
+                            //TODO proper error logging
                             }
                     })
             }
@@ -1047,7 +1036,6 @@ $(document).ready(function(){
         getdetails("/play/getSellData", values)
             .done(function(response){
                 if(response.success !== undefined){
-                    console.log(response.success);
                     let itemList = response.success;
                     var shopDiv ="";
                     $("#shopSellList").empty();
@@ -1099,7 +1087,6 @@ $(document).ready(function(){
                         getdetails("/play/getBuyData", values)
                             .done(function(response){
                                 if(response.success !== undefined){
-                                    console.log(response.success);
                                     let itemList = response.success;
                                     var shopDiv ="";
                                     $("#shopBuyList").empty();
@@ -1127,7 +1114,7 @@ $(document).ready(function(){
                             })
                     }
                     else{
-                        console.log(response.error);
+                        //TODO proper error logging
                     }
                 })
         }
@@ -1156,7 +1143,6 @@ $(document).ready(function(){
                         getdetails("/play/getSellData", values)
                             .done(function(response){
                                 if(response.success !== undefined){
-                                    console.log(response.success);
                                     let itemList = response.success;
                                     var shopDiv ="";
                                     $("#shopSellList").empty();
@@ -1186,7 +1172,7 @@ $(document).ready(function(){
                             })
                     }
                     else{
-                        console.log(response.error);
+                        //TODO proper error logging
                     }
                 })
         }
@@ -1235,7 +1221,7 @@ $(document).ready(function(){
                     });
                 }
                 else{
-                    console.log(response.error)
+                    //TODO proper error logging
                 }
             });
     });
@@ -1289,12 +1275,12 @@ $(document).ready(function(){
 
                                 });
                             } else {
-                                console.log(response.error);
+                                //TODO proper error logging
                             }
                         });
                 }
                 else{
-                    console.log(response.error);
+                    //TODO proper error logging
                 }
             });
 
@@ -1308,7 +1294,6 @@ $(document).ready(function(){
         getdetails('/play/getItems', values)
             .done(function(response){
                 if(response.success !== undefined){
-                    console.log(response.success);
                     let itemList = response.success;
                     var itemDiv ="";
                     $("#itemsDiv").empty();
@@ -1342,7 +1327,6 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '.genderButton', function(){
-        console.log(this.id)
         if(this.id === "femaleSprite"){
             values.sprite = "F";
         }
@@ -1370,13 +1354,11 @@ $(document).ready(function(){
                 if(response.success !== undefined){
                     trainerData = response.success[0];
                     rivalData = response.success[1];
-                    console.log(trainerData)
-                    console.log(rivalData)
 
                     startBattle();
                 }
                 else{
-                    console.log(response.error);
+                    //TODO proper error logging
                 }
             })
     }
@@ -1390,7 +1372,6 @@ $(document).ready(function(){
         //append playfield buttons which we'll be toggling each turn and which open modals
         //this is the function for the first turn of the battle
         //show start battle text
-        console.log(rivalData[0].data.owner);
 
         switch (rivalData[0].data.owner){
             case "#rival_1":
@@ -1475,7 +1456,6 @@ $(document).ready(function(){
             getdetails('/play/getItems', values)
                 .done(function(response){
                     if(response.success !== undefined){
-                        console.log(response.success);
                         let itemList = response.success;
                         var itemDiv ="";
                         $("#itemsDiv").empty();
@@ -1702,7 +1682,6 @@ $(document).ready(function(){
             var newChar = this.id;
             $("#battleText").html('Great job, '+ trainerData[0].data.char_name +"!")
             trainerData.swap(newChar, 0);
-            console.log(trainerData);
             $("#buttonBar").attr('hidden', 'true');
             $("#battleText").fadeToggle(2000, function(){
                 $("#battleText").empty().html("Let's do this, "+ trainerData[0].data.char_name +"!").fadeToggle(2000, function(){
@@ -1910,7 +1889,6 @@ $(document).ready(function(){
                                     break;
                                 default:
                                     //TODO what
-                                    console.log('???')
                                     break;
                             }
 
@@ -1918,7 +1896,6 @@ $(document).ready(function(){
                     }
                     else{
                         //TODO what
-                        console.log('error');
                     }
                 })
 
@@ -2189,7 +2166,6 @@ $(document).ready(function(){
                 let canAttack = attackProcess('rival', '');
                 $("#battleText").fadeToggle(2000, function () {
                     //our turn
-                    console.log(canAttack);
                     if (!canAttack) {
                         //ur dead lol
                         switchFaintedChar();
@@ -2213,13 +2189,11 @@ $(document).ready(function(){
 
                 }
                 else {
-                    console.log(response.error)
                 }
             });
     }
 
     function turnBasedSkills(skillId, arrayData){
-        console.log(arrayData);
         switch(skillId){
             case 1:
                 //Salvo, +2 SPE
@@ -2335,8 +2309,6 @@ $(document).ready(function(){
             "<div id='rLevel'>Lv."+rLevel+"</div>" +
             "<div id='rHpBar'>HP: "+rHpBar+"</div>" +
             "<div id='rStBar'>ST: "+rStBar+"</div>");
-        console.log(trainerData[0]);
-        console.log(rivalData);
         //first turn, get stats
         trainerData[0].data.atk = (trainerData[0].data.atkMax / 100 * trainerData[0].data.level);
         trainerData[0].data.def = (trainerData[0].data.defMax / 100 * trainerData[0].data.level);

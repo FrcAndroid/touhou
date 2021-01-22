@@ -100,7 +100,6 @@ $(document).ready(function() {
 
     $(".reportButton").on('click', function(e){
         let message = $('#reportText').val();
-        console.log(message);
         if(message !== ""){
             //ajax call to add report to the list
             $.ajax({
